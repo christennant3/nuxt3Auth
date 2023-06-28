@@ -1,13 +1,17 @@
+
+
 <template>
-    <p>About</p>
+    
+         <p>About</p>
+   
 </template>
 
 <script>
-export default {
-
-}
+    export default {
+        
+    }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 </style>
