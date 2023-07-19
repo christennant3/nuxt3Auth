@@ -55,8 +55,6 @@ function testFunction() {
     console.log('test');
 }
 
-//import { useFetch } from '@nuxtjs/composition-api';
-// import bcrypt from 'bcrypt';
 
 
 const { data: joke } = await useFetch('https://official-joke-api.appspot.com/random_joke');

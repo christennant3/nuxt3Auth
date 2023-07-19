@@ -14,9 +14,10 @@
     "@types/node": "^18",
     "nuxt": "^3.5.2"
   },
+  "overrides": {
+    "vue": "latest"
+  },
   "dependencies": {
-    "bcrypt": "^5.1.0",
-    "jsonwebtoken": "^9.0.0",
-    "pina": "^0.20.2204228"
+    "@pinia/nuxt": "^0.4.11"
   }
 }
