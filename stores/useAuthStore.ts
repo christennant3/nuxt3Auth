@@ -1,12 +1,45 @@
-import { defineStore } from 'pinia'
+import { type } from 'os';
+import { defineStore } from 'pinia';
 
- export const useAuthStore = defineStore('auth', () => {
-   const count = ref(0)
-   const name = ref('Eduardo')
-   const doubleCount = computed(() => count.value * 2)
-   function increment() {
-     count.value++
-   }
 
-   return { count, name, doubleCount, increment }
- })
+interface User {
+  id: number;
+  firstname: string;
+  email: string;
+}
+
+interface AuthState {
+  token: string | null;
+}
+
+export const useAuthStore = defineStore('auth', {
+
+
+  state: () => ({
+    token: null as string | null,
+    // user: {
+    //   id: 0,
+    //   firstname: '',
+    //   email: '',
+    //   token: null as string | null,
+    // } as User,
+
+
+  }),
+
+  actions: {
+    setToken(token : string) {
+      this.token = token
+    },
+
+    setUser(user: User) {
+      this.user = user
+      localStorage.setItem('user', JSON.stringify(user)) 
+    }
+
+  },
+  getters: {
+    isLoggedIn: (state) => !!state.token,
+  }
+  
+})

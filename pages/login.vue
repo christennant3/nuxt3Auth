@@ -1,6 +1,8 @@
 <template>
     <p>Login</p>
 
+    <p>{{ authStore.token }}</p>
+
     <p>{{ joke.setup }}</p>
 
     {{ joke.punchline }}
@@ -19,13 +21,19 @@
 </template>
 
 <script setup>
-testFunction();
 
+import { useAuthStore } from '~/stores/useAuthStore';
+
+const authStore = useAuthStore();
+debugger;
+console.log(authStore.token);
 
 const form = ref({
     email: '',
     password: ''
 })
+
+
 
 async function handleLogin() {
     try {
@@ -36,11 +44,22 @@ async function handleLogin() {
                 password: form.value.password,
             },
         });
-
-        debugger;
+       
         console.log('success');
         console.log(data.value.token);
-        localStorage.setItem('t', data.value.token);
+        
+        //localStorage.setItem('t', data.value.token);
+        authStore.setToken(data.value.token);
+
+        const loggedInUser = {
+            
+            id: data.value.id,
+            email: data.value.username,
+            firstname: data.value.firstname,
+            token: data.value.token,
+        }
+        
+        authStore.setUser(loggedInUser);
 
     } catch (error) {
         console.log('error');
@@ -51,14 +70,11 @@ async function handleLogin() {
 
 
 
-function testFunction() {
-    console.log('test');
-}
-
-
 
 const { data: joke } = await useFetch('https://official-joke-api.appspot.com/random_joke');
 const p = joke;
+
+
 
 
 </script>
