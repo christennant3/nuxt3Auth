@@ -17,12 +17,12 @@ export const useAuthStore = defineStore('auth', {
 
   state: () => ({
     token: null as string | null,
-    // user: {
-    //   id: 0,
-    //   firstname: '',
-    //   email: '',
-    //   token: null as string | null,
-    // } as User,
+     user: {
+       id: 0,
+       firstname: '',
+       email: '',
+       token: null as string | null,
+     } as User,
 
 
   }),
