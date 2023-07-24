@@ -25,7 +25,7 @@
 import { useAuthStore } from '~/stores/useAuthStore';
 
 const authStore = useAuthStore();
-debugger;
+
 console.log(authStore.token);
 
 const form = ref({
@@ -60,6 +60,8 @@ async function handleLogin() {
         }
         
         authStore.setUser(loggedInUser);
+   
+
 
     } catch (error) {
         console.log('error');

@@ -1,6 +1,9 @@
 <template>
     <p>Home</p>
   <pre>{{ auth.user }}</pre>  
+
+
+
 </template>
 
 <script setup>

@@ -1,11 +1,12 @@
 import { type } from 'os';
 import { defineStore } from 'pinia';
-
+import { useStorage } from '@vueuse/core'
 
 interface User {
   id: number;
   firstname: string;
   email: string;
+  token: string | null;
 }
 
 interface AuthState {
@@ -15,31 +16,37 @@ interface AuthState {
 export const useAuthStore = defineStore('auth', {
 
 
-  state: () => ({
-    token: null as string | null,
-     user: {
-       id: 0,
-       firstname: '',
-       email: '',
-       token: null as string | null,
-     } as User,
+  state: () => {
+    return  {
+      user: null as User | null,
+      token: null as string | null,
+    }
+  },
+  persist: {
+    storage: persistedState.localStorage,
+  },
 
-
-  }),
 
   actions: {
-    setToken(token : string) {
+    setToken(token: string) {
       this.token = token
     },
 
     setUser(user: User) {
+      //const storageKey = 'user';
+      //useStorage(storageKey, user);
       this.user = user
-      localStorage.setItem('user', JSON.stringify(user)) 
     }
 
   },
+
+
   getters: {
+
     isLoggedIn: (state) => !!state.token,
-  }
+  },
   
+
+
+
 })
