@@ -33,8 +33,7 @@ export const useAuthStore = defineStore('auth', {
     },
 
     setUser(user: User) {
-      //const storageKey = 'user';
-      //useStorage(storageKey, user);
+
       this.user = user
     }
 

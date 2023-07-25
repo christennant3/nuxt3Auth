@@ -2,7 +2,7 @@
     <p>Home</p>
   <pre>{{ auth.user }}</pre>  
 
-
+<p>{{ auth.token }}</p>
 
 </template>
 
