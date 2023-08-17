@@ -35,6 +35,12 @@ export const useAuthStore = defineStore('auth', {
     setUser(user: User) {
 
       this.user = user
+    },
+
+    logout() {
+      debugger;
+      this.token = null;
+      this.user = null;
     }
 
   },
