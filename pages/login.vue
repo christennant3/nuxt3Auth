@@ -9,11 +9,11 @@
 
     <form @submit.prevent="handleLogin">
         <label>Email
-            <input v-model="form.email">
+            <input v-model="form.email" type="email" aria-label="Email">
         </label>
 
         <label>Password
-            <input type="password" v-model="form.password">
+            <input type="password" v-model="form.password" aria-label="Password">
         </label>
         <button>Login</button>
 
@@ -31,8 +31,7 @@ console.log(authStore.token);
 const form = ref({
     email: '',
     password: ''
-})
-
+});
 
 
 async function handleLogin() {
