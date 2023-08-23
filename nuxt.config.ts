@@ -10,7 +10,9 @@ export default defineNuxtConfig({
     '@pinia-plugin-persistedstate/nuxt',
       
   ],
+  css: [
+    // SCSS file in the project
+    "~/assets/css/main.scss", 
+  ],
   
-  
-
 })
