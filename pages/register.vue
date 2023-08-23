@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="createAccount">
+        <form @submit.prevent="createAccount" v-if="!success">
             <label>Email
                 <input v-model="form.email" type="email" aria-label="Email">
             </label>
@@ -8,11 +8,24 @@
             <label>Password
                 <input type="password" v-model="form.password" aria-label="Password">
             </label>
+
+            <label>Firstname
+                <input type="text" v-model="form.firstname" aria-label="Firstname">
+            </label>
+
+            <label>Surname
+                <input type="text" v-model="form.surname" aria-label="Surname">
+            </label>
+
             <button>Register</button>
 
-            <p>{{ errorMessage }}</p>
+            <p class="text-red-500">{{ errorMessage }}</p>
 
         </form>
+        <template v-else>
+            <p>Account created</p>
+            <p><router-link to="/login">Login here</router-link></p>
+        </template>
     </div>
 </template>
 
@@ -27,6 +40,7 @@ const form = ref({
     active: true,
 });
 const errorMessage = ref(null);
+const success = ref(false);
 
 
 async function createAccount() {
@@ -45,16 +59,17 @@ async function createAccount() {
                 role: 'Admin'
             },
         });
-
-        if(error !== null) {
+        debugger;
+        if (error.value !== null) {
             errorMessage.value = error.value.data.message;
-            const dsfasfd = error.value.data.message;
-            debugger;
+
+        } else {
+            success.value = true;
         }
-        
+
 
     } catch (error) {
-        console.log('error');  
+        console.log('error');
     }
 
 }
