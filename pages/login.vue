@@ -5,19 +5,19 @@
 
     <p>{{ joke.setup }}</p>
 
-    {{ joke.punchline }}
+    <p>{{ joke.punchline }}</p>
 
-    <form @submit.prevent="handleLogin">
-        <label>Email
-            <input v-model="form.email" type="email" aria-label="Email">
-        </label>
+    <FormKit type="form" submit-label="Login" @submit="handleLogin" v-if="visible.form">
 
-        <label>Password
-            <input type="password" v-model="form.password" aria-label="Password">
-        </label>
-        <button>Login</button>
+        <FormKit type="email" v-model="form.email" label="Email" validation="required"  />
+        <FormKit type="password" v-model="form.password" label="Password" validation="required" />
+    </FormKit>
 
-    </form>
+    <template v-if="visible.success">
+        <p>You have logged in</p>
+    </template>
+
+   
 </template>
 
 <script setup>
@@ -33,6 +33,10 @@ const form = ref({
     password: ''
 });
 
+const visible = ref ({
+    success: false,
+    form: true
+})
 
 async function handleLogin() {
     try {
@@ -47,7 +51,7 @@ async function handleLogin() {
         console.log('success');
         console.log(data.value.token);
         
-        //localStorage.setItem('t', data.value.token);
+        
         authStore.setToken(data.value.token);
 
         const loggedInUser = {
@@ -59,7 +63,10 @@ async function handleLogin() {
         }
         
         authStore.setUser(loggedInUser);
-   
+
+        //success
+        visible.value.success = true;
+        visible.value.form = false;
 
 
     } catch (error) {
