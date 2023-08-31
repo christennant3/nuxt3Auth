@@ -17,6 +17,7 @@
         <p>You have logged in</p>
 
          <h2>Roles</h2>
+        
 
     </template>
 
@@ -59,16 +60,18 @@ async function handleLogin() {
         
         
         authStore.setToken(data.value.token);
-
+       
         const loggedInUser = {
             
             id: data.value.id,
             email: data.value.username,
             firstname: data.value.firstname,
             token: data.value.token,
+            role: data.value.role
         }
         
         authStore.setUser(loggedInUser);
+
 
         //success
         visible.value.success = true;
