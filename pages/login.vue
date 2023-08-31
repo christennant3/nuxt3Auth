@@ -15,6 +15,9 @@
 
     <template v-if="visible.success">
         <p>You have logged in</p>
+
+         <h2>Roles</h2>
+
     </template>
 
    
@@ -25,8 +28,11 @@
 import { useAuthStore } from '~/stores/useAuthStore';
 
 const authStore = useAuthStore();
+const role = authStore.role;
+debugger;
 
 console.log(authStore.token);
+console.log(authStore.user);
 
 const form = ref({
     email: '',
