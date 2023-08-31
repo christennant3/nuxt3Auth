@@ -1,5 +1,5 @@
 <template>
-    <p>Login</p>
+    <h1>Login</h1>
 
     <p>{{ authStore.token }}</p>
 
@@ -16,8 +16,8 @@
     <template v-if="visible.success">
         <p>You have logged in</p>
 
-         <h2>Roles</h2>
         
+        <p><b>Role: {{ authStore.user.role }} </b></p>
 
     </template>
 

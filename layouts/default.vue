@@ -5,10 +5,18 @@
             <nuxt-link to="/" class="font-bold">Site name</nuxt-link>
             <ul class="flex gap-4">
                 <li><router-link to="/">Home</router-link></li>
+
                 <li><router-link to="/about">About</router-link></li>
+                
                 <li v-if="!auth.isLoggedIn"><router-link to="/register">Register</router-link></li>
+
+                <li v-if="auth.isLoggedIn && auth.user.role == 'Admin'"><router-link to="/admin">Admin</router-link></li>
+
                 <li v-if="!auth.isLoggedIn"><router-link to="/login">Login</router-link></li>
+
                 <li v-if="auth.isLoggedIn"><a @click="logout" href="#">Log out</a></li>
+                
+                <li v-if="auth.isLoggedIn"><b>Role:</b> {{ auth.user.role }}</li>
             </ul>
         </nav>
     </header>
