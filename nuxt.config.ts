@@ -9,11 +9,14 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@formkit/nuxt',
-      
+  
   ],
   css: [
     // SCSS file in the project
     "~/assets/css/main.scss", 
   ],
+
+
+
   
 })
