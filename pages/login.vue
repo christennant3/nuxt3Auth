@@ -29,11 +29,11 @@
 import { useAuthStore } from '~/stores/useAuthStore';
 
 const authStore = useAuthStore();
-const role = authStore.role;
+//const role = authStore.role;
 debugger;
 
-console.log(authStore.token);
-console.log(authStore.user);
+/* console.log(authStore.token);
+console.log(authStore.user); */
 
 const form = ref({
     email: '',
@@ -77,10 +77,18 @@ async function handleLogin() {
         visible.value.success = true;
         visible.value.form = false;
 
+        if (error.value !== null) {
+            debugger;
+            errorMessage.value = error.value.data.message;
+
+        }
+
 
     } catch (error) {
+        
         console.log('error');
         //console.log(error.value.data.message);
+        debugger;
     }
 
 }
