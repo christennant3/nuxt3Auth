@@ -10,12 +10,10 @@
                       
                 <FormKit type="text" v-model="form.surname" label="Surname" validation="required" />
          
-            <!-- <button>Register</button> -->
-
             <p class="text-red-500">{{ errorMessage }}</p>
 
         </FormKit>
-        
+
         <template v-else>
             <p>Account created</p>
             <p><router-link to="/login">Login here</router-link></p>
