@@ -1,27 +1,21 @@
 <template>
     <div>
-        <form @submit.prevent="createAccount" v-if="!success">
-            <label>Email
-                <input v-model="form.email" type="email" aria-label="Email">
-            </label>
-
-            <label>Password
-                <input type="password" v-model="form.password" aria-label="Password">
-            </label>
-
-            <label>Firstname
-                <input type="text" v-model="form.firstname" aria-label="Firstname">
-            </label>
-
-            <label>Surname
-                <input type="text" v-model="form.surname" aria-label="Surname">
-            </label>
-
-            <button>Register</button>
+        <FormKit type="form" @submit="createAccount" v-if="!success">
+         
+                <FormKit v-model="form.email" type="email" label="Email" validation="required" />
+                  
+                <FormKit type="password" v-model="form.password" label="Password" validation="required" />
+                       
+                <FormKit type="text" v-model="form.firstname" label="Firstname" validation="required" />
+                      
+                <FormKit type="text" v-model="form.surname" label="Surname" validation="required" />
+         
+            <!-- <button>Register</button> -->
 
             <p class="text-red-500">{{ errorMessage }}</p>
 
-        </form>
+        </FormKit>
+        
         <template v-else>
             <p>Account created</p>
             <p><router-link to="/login">Login here</router-link></p>
