@@ -10,7 +10,7 @@
                       
                 <FormKit type="text" v-model="form.surname" label="Surname" validation="required" />
          
-            <p class="text-red-500">{{ errorMessage }}</p>
+            <p class="error">{{ errorMessage }}</p>
 
         </FormKit>
 

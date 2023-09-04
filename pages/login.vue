@@ -9,19 +9,19 @@
 
     <FormKit type="form" submit-label="Login" @submit="handleLogin" v-if="visible.form">
 
-        <FormKit type="email" v-model="form.email" label="Email" validation="required"  />
+        <FormKit type="email" v-model="form.email" label="Email" validation="required" />
         <FormKit type="password" v-model="form.password" label="Password" validation="required" />
     </FormKit>
+
+    <p class="error">{{ errorMessage }}</p>
 
     <template v-if="visible.success">
         <p>You have logged in</p>
 
-        
+
         <p><b>Role: {{ authStore.user.role }} </b></p>
 
     </template>
-
-   
 </template>
 
 <script setup>
@@ -40,10 +40,11 @@ const form = ref({
     password: ''
 });
 
-const visible = ref ({
+const visible = ref({
     success: false,
     form: true
-})
+});
+const errorMessage = ref(null);
 
 async function handleLogin() {
     try {
@@ -54,38 +55,43 @@ async function handleLogin() {
                 password: form.value.password,
             },
         });
-       
-        console.log('success');
-        console.log(data.value.token);
-        
-        
-        authStore.setToken(data.value.token);
-       
-        const loggedInUser = {
-            
-            id: data.value.id,
-            email: data.value.username,
-            firstname: data.value.firstname,
-            token: data.value.token,
-            role: data.value.role
-        }
-        
-        authStore.setUser(loggedInUser);
 
-
-        //success
-        visible.value.success = true;
-        visible.value.form = false;
-
+        debugger;
         if (error.value !== null) {
             debugger;
             errorMessage.value = error.value.data.message;
 
+        } else {
+            console.log('success');
+            console.log(data.value.token);
+
+
+            authStore.setToken(data.value.token);
+
+            const loggedInUser = {
+
+                id: data.value.id,
+                email: data.value.username,
+                firstname: data.value.firstname,
+                token: data.value.token,
+                role: data.value.role
+            }
+
+            authStore.setUser(loggedInUser);
+
+
+            //success
+            visible.value.success = true;
+            visible.value.form = false;
         }
 
 
+
+
+
+
     } catch (error) {
-        
+
         console.log('error');
         //console.log(error.value.data.message);
         debugger;
